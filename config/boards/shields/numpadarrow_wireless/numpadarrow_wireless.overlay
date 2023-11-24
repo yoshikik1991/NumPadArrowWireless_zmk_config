@@ -83,7 +83,7 @@
     };
 };
 
-&i2c0 {
+&i2c3 {
     compatible = "nordic,nrf-twi";
     pinctrl-0 = <&i2c0_default>;
     pinctrl-1 = <&i2c0_sleep>;
