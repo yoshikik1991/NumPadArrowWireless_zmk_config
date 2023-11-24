@@ -42,11 +42,11 @@
             , <&io 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
             ;
         row-gpios
-            = <&io 8  (GPIO_ACTIVE_LOW)>
-            , <&io 9  (GPIO_ACTIVE_LOW)>
-            , <&io 10 (GPIO_ACTIVE_LOW)>
-            , <&io 11 (GPIO_ACTIVE_LOW)>
-            , <&io 12 (GPIO_ACTIVE_LOW)>
+            = <&io 8  (GPIO_ACTIVE_HIGH)>
+            , <&io 9  (GPIO_ACTIVE_HIGH)>
+            , <&io 10 (GPIO_ACTIVE_HIGH)>
+            , <&io 11 (GPIO_ACTIVE_HIGH)>
+            , <&io 12 (GPIO_ACTIVE_HIGH)>
             ;
 
     };
