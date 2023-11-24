@@ -5,6 +5,11 @@ if SHIELD_NumPadArrowWireless
 
 config ZMK_KEYBOARD_NAME
     default "NumPadArrow"
+    
+config I2C
+        default y
 
 endif
+
+
 
