@@ -9,7 +9,7 @@
 
 / {
     chosen {
-        zmk,kscan = &kscan0;
+        zmk,kscan = &kscan;
         zmk,underglow = &led_strip;
         zmk,matrix_transform = &transform;
     };
@@ -28,18 +28,29 @@
         >;
     };
 
-    kscan0: kscan {
-        compatible = "zmk,kscan-gpio-matrix";
+    kscan: kscan {
+        compatible = "zmk,kscan-composite";
         label = "KSCAN";
+        rows = <5>;
+        columns = <6>;
+
+        key {
+            kscan = <&kscan0>;
+        };
+    };
+
+    kscan0: kscan0 {
+        compatible = "zmk,kscan-gpio-matrix";
+        label = "KSCAN_KEY";
 
         diode-direction = "col2row";
         col-gpios
-            = <&io 0  (GPIO_ACTIVE_HIGH)>
-            , <&io 1  (GPIO_ACTIVE_HIGH)>
-            , <&io 2  (GPIO_ACTIVE_HIGH)>
-            , <&io 3  (GPIO_ACTIVE_HIGH)>
-            , <&io 4  (GPIO_ACTIVE_HIGH)>
-            , <&io 5  (GPIO_ACTIVE_HIGH)>
+            = <&io 0  GPIO_ACTIVE_HIGH>
+            , <&io 1  GPIO_ACTIVE_HIGH>
+            , <&io 2  GPIO_ACTIVE_HIGH>
+            , <&io 3  GPIO_ACTIVE_HIGH>
+            , <&io 4  GPIO_ACTIVE_HIGH>
+            , <&io 5  GPIO_ACTIVE_HIGH>
             ;
         row-gpios
             = <&io 8  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
