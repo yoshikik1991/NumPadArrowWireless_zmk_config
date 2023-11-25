@@ -46,19 +46,19 @@
 
         diode-direction = "col2row";
         col-gpios
-            = <&io 0  GPIO_ACTIVE_HIGH>
-            , <&io 1  GPIO_ACTIVE_HIGH>
-            , <&io 2  GPIO_ACTIVE_HIGH>
-            , <&io 3  GPIO_ACTIVE_HIGH>
-            , <&io 4  GPIO_ACTIVE_HIGH>
-            , <&io 5  GPIO_ACTIVE_HIGH>
+            = <&io 0  GPIO_ACTIVE_LOW | GPIO_PULL_UP>
+            , <&io 1  GPIO_ACTIVE_LOW | GPIO_PULL_UP>
+            , <&io 2  GPIO_ACTIVE_LOW | GPIO_PULL_UP>
+            , <&io 3  GPIO_ACTIVE_LOW | GPIO_PULL_UP>
+            , <&io 4  GPIO_ACTIVE_LOW | GPIO_PULL_UP>
+            , <&io 5  GPIO_ACTIVE_LOW | GPIO_PULL_UP>
             ;
         row-gpios
-            = <&io 8  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&io 9  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&io 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&io 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&io 12 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            = <&io 8  (GPIO_ACTIVE_LOW)>
+            , <&io 9  (GPIO_ACTIVE_LOW)>
+            , <&io 10 (GPIO_ACTIVE_LOW)>
+            , <&io 11 (GPIO_ACTIVE_LOW)>
+            , <&io 12 (GPIO_ACTIVE_LOW)>
             ;
 
     };
@@ -131,7 +131,6 @@
 		com-invdir;
 		com-sequential;
 		prechargep = <0x22>;
-        rotation = <180>;
 	};
 };
 
