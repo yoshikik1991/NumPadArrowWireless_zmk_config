@@ -11,6 +11,40 @@
 #include <dt-bindings/zmk/rgb.h>
 
 / {
+    macros {
+        bt1: bt1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE &bt BT_SEL 0>;
+            label = "BT1";
+        };
+
+        bt2: bt2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE &bt BT_SEL 1>;
+            label = "BT2";
+        };
+
+        bt3: bt3 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE &bt BT_SEL 2>;
+            label = "BT3";
+        };
+    };
+
+    behaviors {
+        changeLayer: changeLayer {
+            compatible = "zmk,behavior-hold-tap";
+            label = "CHANGELAYER";
+            bindings = <&mo>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -23,12 +57,36 @@
             // ----------------------
 
             bindings = <
-                                  &out OUT_TOG  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2
-&rgb_ug RGB_TOG  &bt BT_CLR       &kp N7        &kp N8        &kp N9        &kp EQUAL
-&rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp MINUS
-&none            &kp UP_ARROW     &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp PLUS
-&kp LEFT         &kp DOWN_ARROW   &kp RIGHT     &kp N0        &kp DOT       &kp ENTER
+                                                          &kp KP_NUMLOCK   &kp SLASH        &kp ASTERISK     &kp MINUS
+&kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS               &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp PLUS
+&none                 &changeLayer 2 LANG_ZENKAKUHANKAKU  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp COLON
+&none                 &kp UP_ARROW                        &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp BACKSPACE
+&kp LEFT              &kp DOWN_ARROW                      &kp RIGHT        &kp N0           &kp DOT          &kp ENTER
             >;
+        };
+
+        FunctionLayer {
+            bindings = <
+                    &kp F10  &kp F11  &kp F12  &trans
+&kp LBKT  &kp RBKT  &kp F7   &kp F8   &kp F9   &trans
+&trans    &trans    &kp F4   &kp F5   &kp F6   &trans
+&trans    &trans    &kp F1   &kp F2   &kp F3   &trans
+&trans    &trans    &trans   &trans   &trans   &trans
+            >;
+
+            label = "Function";
+        };
+
+        Setting {
+            bindings = <
+                                  &out OUT_USB     &bt1                             &bt2                               &bt3
+&bt BT_CLR       &none            &none            &none                            &none                              &none
+&none            &none            &none            &none                            &none                              &none
+&none            &rgb_ug RGB_BRI  &rgb_ug RGB_TOG  &none                            &none                              &none
+&rgb_ug RGB_EFR  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF  &rgb_ug RGB_COLOR_HSB(0,100,50)  &rgb_ug RGB_COLOR_HSB(108,100,50)  &rgb_ug RGB_COLOR_HSB(247,91,49)
+            >;
+
+            label = "Setting";
         };
     };
 };
