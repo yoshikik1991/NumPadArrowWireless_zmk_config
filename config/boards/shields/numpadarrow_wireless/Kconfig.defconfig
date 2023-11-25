@@ -38,6 +38,11 @@ choice LV_DISP_ROT
 	default LV_DISP_ROT_180
 endchoice
 
+choice ZMK_DISPLAY_WORK_QUEUE 
+    default ZMK_DISPLAY_WORK_QUEUE_DEDICATED
+endchoice
+
+
 
 endif # LVGL
 
