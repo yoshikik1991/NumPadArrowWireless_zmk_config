@@ -62,6 +62,12 @@
 
     };
 
+	ext-power {
+		compatible = "zmk,ext-power-generic";
+		label = "EXT_POWER";
+		control-gpios = <&gpio0 28 GPIO_ACTIVE_HIGH>;
+	};
+
 };
 
 &pinctrl {
