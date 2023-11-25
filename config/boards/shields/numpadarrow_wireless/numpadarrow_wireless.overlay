@@ -45,7 +45,7 @@
         label = "KSCAN_KEY";
 
 
-        diode-direction = "col2row";
+        diode-direction = "row2col";
         col-gpios
             = <&io 0  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
             , <&io 1  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
