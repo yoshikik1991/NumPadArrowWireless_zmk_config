@@ -31,6 +31,14 @@ choice LV_COLOR_DEPTH
 	default LV_COLOR_DEPTH_1
 endchoice
 
+config LV_DISP_SW_ROTATE
+    default y
+
+choice LV_DISP_ROT
+	default LV_DISP_ROT_180
+endchoice
+
+
 endif # LVGL
 
 endif # DISPLAY
