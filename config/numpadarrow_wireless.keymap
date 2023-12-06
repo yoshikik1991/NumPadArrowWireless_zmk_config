@@ -75,11 +75,11 @@
             // ----------------------
 
             bindings = <
-                                                &kp KP_EQUAL     &kp KP_SLASH     &kp KP_ASTERISK  &kp KP_MINUS
-&kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS     &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp KP_PLUS
-&hold 0 LOCKING_NUM   &changeLayer 2 LC(SPACE)  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &changeLayer 1 COLON
-&none                 &kp UP_ARROW              &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp BACKSPACE
-&kp LEFT              &kp DOWN_ARROW            &kp RIGHT        &kp KP_DOT       &kp KP_N0        &kp KP_ENTER
+                                           &kp LS(MINUS)    &kp KP_SLASH     &kp KP_ASTERISK  &kp KP_MINUS
+&kp LS(N9)       &kp LS(N0)                &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp KP_PLUS
+&kp LOCKING_NUM  &changeLayer 2 LC(SPACE)  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &changeLayer 1 LS(SEMI)
+&none            &kp UP_ARROW              &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp BACKSPACE
+&kp LEFT         &kp DOWN_ARROW            &kp RIGHT        &kp KP_DOT       &kp KP_N0        &kp KP_ENTER
             >;
 
             label = "Num";
