@@ -2,6 +2,7 @@ cd /workspaces
 mkdir app
 cp /workspaces/zmk-config/config/west.yml /workspaces/app/
 west init -l app/
+cp /workspaces/zmk-config/.devcontainer/build.py /workspaces/zmk-config/
 #west update
 #git apply --ignore-whitespace /patches/*.patch
 #west zephyr-export
