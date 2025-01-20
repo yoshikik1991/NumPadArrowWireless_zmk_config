@@ -6,16 +6,55 @@
 
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <dt-bindings/led/led.h>
+#include <physical_layouts.dtsi>
 
 / {
     chosen {
-        zmk,kscan = &kscan;
+        zmk,physical-layout = &physical_layout0;
         zmk,underglow = &led_strip;
-        zmk,matrix_transform = &transform;
-        zephyr,display = &ssd1306_ssd1306_128x32;
+        zephyr,display = &oled;
     };
 
-    transform: transform {
+    physical_layout0: physical_layout_0 {
+        compatible = "zmk,physical-layout";
+        display-name = "default_transform";
+
+        kscan = <&kscan>;
+        transform = <&matrix_transform0>;
+
+        keys  //                     w   h    x    y     rot    rx    ry
+            = <&key_physical_attrs 100 100  250    0       0     0     0>
+            , <&key_physical_attrs 100 100  350    0       0     0     0>
+            , <&key_physical_attrs 100 100  450    0       0     0     0>
+            , <&key_physical_attrs 100 100  550    0       0     0     0>
+            , <&key_physical_attrs 100 100    0  100       0     0     0>
+            , <&key_physical_attrs 100 100  100  100       0     0     0>
+            , <&key_physical_attrs 100 100  250  100       0     0     0>
+            , <&key_physical_attrs 100 100  350  100       0     0     0>
+            , <&key_physical_attrs 100 100  450  100       0     0     0>
+            , <&key_physical_attrs 100 100  550  100       0     0     0>
+            , <&key_physical_attrs 100 100    0  200       0     0     0>
+            , <&key_physical_attrs 100 100  100  200       0     0     0>
+            , <&key_physical_attrs 100 100  250  200       0     0     0>
+            , <&key_physical_attrs 100 100  350  200       0     0     0>
+            , <&key_physical_attrs 100 100  450  200       0     0     0>
+            , <&key_physical_attrs 100 100  550  200       0     0     0>
+            , <&key_physical_attrs 100 100    0  300       0     0     0>
+            , <&key_physical_attrs 100 100  100  350       0     0     0>
+            , <&key_physical_attrs 100 100  250  300       0     0     0>
+            , <&key_physical_attrs 100 100  350  300       0     0     0>
+            , <&key_physical_attrs 100 100  450  300       0     0     0>
+            , <&key_physical_attrs 100 100  550  300       0     0     0>
+            , <&key_physical_attrs 100 100    0  450       0     0     0>
+            , <&key_physical_attrs 100 100  100  450       0     0     0>
+            , <&key_physical_attrs 100 100  200  450       0     0     0>
+            , <&key_physical_attrs 100 100  350  400       0     0     0>
+            , <&key_physical_attrs 100 100  450  400       0     0     0>
+            , <&key_physical_attrs 100 100  550  400       0     0     0>
+            ;
+    };
+
+    matrix_transform0: matrix_transform0 {
         compatible = "zmk,matrix-transform";
         rows = <5>;
         columns = <6>;
@@ -32,12 +71,13 @@
     kscan: kscan {
         compatible = "zmk,kscan-composite";
         label = "KSCAN";
-        rows = <5>;
+        rows = <9>;
         columns = <6>;
 
         key {
             kscan = <&kscan0>;
         };
+
     };
 
     kscan0: kscan0 {
@@ -64,13 +104,28 @@
 
     };
 
-	ext-power {
-		compatible = "zmk,ext-power-generic";
-		label = "EXT_POWER";
-		control-gpios = <&gpio0 28 GPIO_ACTIVE_LOW>;
-	};
+    EXT_POWER {
+        compatible = "zmk,ext-power-generic";
+        control-gpios = <&xiao_d 2 GPIO_ACTIVE_LOW>;
+        init-delay-ms = <50>;
+    };
+
+    left_encoder: encoder_left {
+        compatible = "alps,ec11";
+        a-gpios = <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <12>;
+        status = "okay";
+    };
+
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&left_encoder>;
+        triggers-per-rotation = <10>;
+    };
 
 };
+
 
 &pinctrl {
     spi3_default: spi3_default {
@@ -100,6 +155,7 @@
             low-power-enable;
         };
     };
+
 };
 
 &i2c0 {
@@ -118,21 +174,22 @@
         ngpios = <16>;
     };
 
-	ssd1306_ssd1306_128x32: ssd1306@3c {
-        label= "OLED";
-		compatible = "solomon,ssd1306fb";
-		reg = <0x3c>;
-		width = <128>;
-		height = <32>;
-		segment-offset = <0>;
-		page-offset = <0>;
-		display-offset = <0>;
-		multiplex-ratio = <31>;
-		segment-remap;
-		com-invdir;
-		com-sequential;
-		prechargep = <0x22>;
-	};
+    oled: ssd1306@3c {
+        compatible = "solomon,ssd1306fb";
+        reg = <0x3c>;
+        width = <128>;
+        height = <32>;
+        segment-offset = <0>;
+        page-offset = <0>;
+        display-offset = <0>;
+        multiplex-ratio = <31>;
+        //segment-remap;
+        //com-invdir;
+        com-sequential;
+        inversion-on;
+        prechargep = <0x22>;
+    };
+
 };
 
 
@@ -161,3 +218,5 @@
                           LED_COLOR_ID_BLUE>;
   };
 };
+
+&xiao_serial { status = "disabled"; };
